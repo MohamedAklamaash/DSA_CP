@@ -1,5 +1,5 @@
-from collections import deque,defaultdict
 import heapq
+
 def djisktra(graph,src):
     distances = {node:float("inf") for node in range(len(graph))}
     distances[src] = 0
@@ -14,6 +14,7 @@ def djisktra(graph,src):
                 distances[neigh] = dist
                 heapq.heappush(pq,(dist,neigh))
     return distances
+
 graph = {
     0: [(1, 4), (2, 1)],
     1: [(3, 1)],

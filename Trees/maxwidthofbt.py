@@ -17,7 +17,7 @@ class Solution(object):
             return 0
         
         # Queue stores pairs of (node, index)
-        queue = deque([(root, 0)])
+        queue = deque([(root, 1)])
         max_width = 0
         
         while queue:

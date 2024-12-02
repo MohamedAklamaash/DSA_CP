@@ -1,5 +1,5 @@
 class Solution:
-    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+    def isBalanced(self, root) -> bool:
         def height(root):
             if not root:
                 return 0

@@ -27,7 +27,7 @@ class Solution(object):
         path1, path2 = [], []
         findPath(root, path1, p)
         findPath(root, path2, q)
-        
+
         lca = None
         for u, v in zip(path1, path2):
             if u == v:

@@ -16,8 +16,8 @@ class Solution(object):
         def helper(root):
             if not root:
                 return 0
-            left = max(helper(root.left),0)
-            right = max(helper(root.right),0)
+            left = max(helper(root.left),0) # ignore negative val paths
+            right = max(helper(root.right),0) # ignore -ve value paths
             maxi[0] = max(maxi[0],root.val+left+right)
             return root.val + max(left,right)
         helper(root)

@@ -28,6 +28,6 @@ matrix = [
 ]
 
 result = updatematrix(matrix)
-print(result)  # Output: [[3, 2, 1], [2, 1, 0], [1, 0, 1]]
+print(result) 
 
 

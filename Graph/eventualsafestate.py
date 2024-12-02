@@ -1,33 +1,27 @@
-def eventualsafestate(graph):
-    if not graph:
-        return 0
-    def dfs(graph,node,visited,pathvisited,check):
-        visited[node] = 1
-        pathvisited[node] = 1
-        for neigh in graph[node]:
-            if visited[neigh] == 0:
-                if dfs(graph,neigh,visited,pathvisited,check):
-                    check[node] = 0
+class Solution(object):
+    def eventualSafeNodes(self, graph):
+        """
+        :type graph: List[List[int]]
+        :rtype: List[int]
+        """
+        
+        visited = {}
+
+        def dfs(node):
+            if node in visited:
+                return visited[node]
+            visited[node] = True
+            for neigh in graph[node]:
+                if dfs(neigh):
                     return True
-            elif pathvisited[neigh]:
-                check[node] = 0
-                return True
-        pathvisited[node] = 0
-        check[node] = 1
-        return False
-    
-    visited = [0] * len(graph)
-    pathvisited = [0] * len(graph)
-    check = [0] * len(graph)
-    for i in range(len(graph)):
-        if visited[i] == 0:
-            dfs(graph,i,visited,pathvisited,check)
-    safenodes = []
-    for i in range(len(check)):
-        if check[i] == 1:
-            safenodes.append(i)
-    print(safenodes)
-    return safenodes
+            visited[node] = False
+        res = []
+        for i in range(len(graph)):
+            if not dfs(i):
+                res.append(i)
+        res.sort()
+        return res
+
 if __name__ == "__main__":
     test_graphs = [
         ([[1, 2], [2, 3], [5], [0], [5], [], []], [2, 4, 5, 6]),  # Safe nodes: [2, 4, 5, 6]
@@ -38,6 +32,5 @@ if __name__ == "__main__":
     ]
 
     for idx, (graph, expected) in enumerate(test_graphs):
-        result = eventualsafestate(graph)
+        result = Solution().eventualSafeNodes(graph)
         print(f"Test Case {idx + 1}: {'Pass' if result == expected else 'Fail'}")
-

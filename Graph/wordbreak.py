@@ -1,21 +1,17 @@
+def word_break_dp(s, word_dict):
+    n = len(s)
+    dp = [False] * (n + 1)
+    dp[0] = True  # Base case: Empty string can be broken
 
-class Solution(object):
-    def wordBreak(self, s, wordDict):
-        """
-        :type s: str
-        :type wordDict: List[str]
-        :rtype: bool
-        """
-        if not wordDict:
-            return False
-        n = len(s)
-        dp = [False] *(n+1)
-        dp[len(s)] = True
+    for i in range(1, n + 1):
+        for j in range(i):
+            if dp[j] and s[j:i] in word_dict:
+                dp[i] = True
+                break
 
-        for i in range(len(s)-1,-1,-1):
-            for w in wordDict:
-                if i+len(w) <= len(s) and s[i:i+len(w)] == w:
-                    dp[i] = dp[i+len(w)]
-                if dp[i]:
-                    break
-        return dp[0]
+    return dp[n]
+
+# Example
+s = "leetcode"
+word_dict = {"leet", "code"}
+print(word_break_dp(s, word_dict))  # Output: True

@@ -1,9 +1,9 @@
-def count_provinces(isConnected):
+def count_provinces(graph):
     def dfs(node):
         visited[node] = True
-        for neighbor in range(len(isConnected)):
-            if isConnected[node][neighbor] == 1 and not visited[neighbor]:
-                dfs(neighbor)
+        for vertex,edge in enumerate(graph[node]):
+            if edge and not visited[vertex]:
+                dfs(vertex)
 
     n = len(isConnected)
     visited = [False] * n

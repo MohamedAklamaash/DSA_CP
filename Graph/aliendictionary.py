@@ -8,6 +8,7 @@ def aliendictionary(words):
         minlen = min(len(words[i]),len(words[i+1]))
         word1 = words[i]
         word2 = words[i+1]
+
         if len(words[i]) > len(words[i+1]) and word1[:minlen] == word2[:minlen]:
             return []
         for j in range(minlen):
@@ -25,11 +26,9 @@ def aliendictionary(words):
 
         queue = deque([node for node in graph if indegree[node]==0])
         arr = []
-        print(indegree)
         while queue:
             node = queue.popleft()
             arr.append(node)
-            print(node)
             for neigh in graph[node]:
                 indegree[neigh]-=1
                 if indegree[neigh] == 0:

@@ -1,7 +1,7 @@
 from collections import deque,defaultdict
 
-def mintimetoburstbst(root,target):
-    if not root or not target:
+def mintimetoburstbst(root):
+    if not root:
         return
     parent = {}
     def assignParents(root,par):
@@ -12,9 +12,9 @@ def mintimetoburstbst(root,target):
         assignParents(root.right,root)
     assignParents(root,None)
 
-    queue = deque([target])
+    queue = deque([root])
     time = 0
-    visited = set([target])
+    visited = set([root])
     while queue:
         size = len(queue)
         for _ in range(size):
